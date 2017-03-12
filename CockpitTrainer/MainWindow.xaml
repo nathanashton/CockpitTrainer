@@ -1,0 +1,28 @@
+﻿<Window x:Class="CockpitTrainer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CockpitTrainer"
+        xmlns:converters="clr-namespace:CockpitTrainer.Converters"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <converters:AlarmConverter x:Key="Alarm"/>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+        <TextBlock Text="{Binding FuelSystem.LeftTank.Quantity}" />
+        <TextBlock Text="{Binding FuelSystem.RightTank.Quantity}" />
+
+            <Label Content="{Binding Counter}"/>
+            
+            
+            <Label Content="Left Fuel" Background="{Binding Alarms.LeftFuelTankEmpty, Converter={StaticResource Alarm}}"></Label>
+            <Label Content="Right Fuel" Background="{Binding Alarms.RightFuelTankEmpty, Converter={StaticResource Alarm}}"></Label>
+            <Label Content="{Binding Alarms.ActiveAlarmsString}"></Label>
+
+
+        </StackPanel>
+    </Grid>
+</Window>
